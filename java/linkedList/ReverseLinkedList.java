@@ -1,4 +1,6 @@
 
+
+
 class Node{
     int data;
     Node next;
@@ -13,6 +15,7 @@ class Node{
 // using builtin linkedlist
 public class ReverseLinkedList {
     Node head;
+    //using iteration
     public void reverse(){
       Node last = null;
       Node current = head;
@@ -23,6 +26,18 @@ public class ReverseLinkedList {
          current= next;
       }
       head=last;
+    }
+    //using recusrive
+    public Node recursivehelper(Node node){
+       if(node==null || node.next==null)return node;
+       Node newHead = recursivehelper(node.next);
+       Node next = node.next;
+       next.next = node;
+       node.next=null;
+       return newHead;
+    }
+    public void reverseRecursive(){
+        head = recursivehelper(head);
     }
     public void add(int data){
         Node newNode = new Node(data);
@@ -37,6 +52,36 @@ public class ReverseLinkedList {
         }
         currNode.next = newNode;
 
+    }
+    //Optimal Approach: Tortoise and Hare (Fast & Slow Pointers)
+    //This technique finds the second middle node in one pass (O(n) time, O(1) space).
+    //🐢 Slow Pointer moves one step at a time
+    // 🐇 Fast Pointer moves two steps at a time
+    // When the fast pointer reaches the end, the slow pointer is at the middle.
+    public void findMiddleNode(){
+        Node fast=head;
+        Node slow=head;
+        while (fast!=null && fast.next!=null) {
+            slow = slow.next;
+            fast=fast.next.next;
+        }
+        head= slow;
+    }
+    public void removeNthNodeFromlast(int n){
+        Node fast=head;
+        Node slow=head;
+        for(int i=0;i<=n;i++){
+            fast=fast.next;
+        }
+        if(fast==null) {
+            head=slow.next;
+            return;
+        }
+        while(fast!=null){
+            fast=fast.next;
+            slow=slow.next;
+        }
+        slow.next=slow.next.next;
     }
     public void printList(){
        Node cuNode = head;
@@ -71,6 +116,9 @@ public class ReverseLinkedList {
         list.printList();
         System.out.println("Reversed linked list");
         list.reverse();
+        list.printList();
+        // list.findMiddleNode();
+        list.removeNthNodeFromlast(5);
         list.printList();
     }
 }

@@ -1,5 +1,16 @@
 
+import java.lang.reflect.Array;
+
+
 // LinkedList custom
+// linked list is linear data strucutre which consist of nodes . Here each nodes contains data and pointer to next node
+// how it different from array;// LinkedList custom
+// linked list is linear data strucutre which consist of nodes . Here each nodes contains data and pointer to next node
+// how it different from array;
+// example of linked list :
+// Previous and next page in a web browser
+// Music Player
+
 public class Node{
     int data;
     Node next;
@@ -7,6 +18,10 @@ public class Node{
     Node(int data){
          this.data = data;
          this.next = null;
+    }
+    Node(int data,Node next){
+        this.data=data;
+        this.next=next;
     }
  }
 

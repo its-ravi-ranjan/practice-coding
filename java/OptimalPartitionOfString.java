@@ -16,6 +16,7 @@ import java.util.HashSet;
 
 public class OptimalPartitionOfString{
     public int partitionString(String s) {
+        
         HashSet<Character> visited = new HashSet<>();
         int finalcount = 0;
 
